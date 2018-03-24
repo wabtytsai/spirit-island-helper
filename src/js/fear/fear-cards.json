@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Overseas Trade Seems Safer",
+    "1": "Defend 3 in all Coastal lands.",
+    "2": "Defend 6 in all Coastal lands. Invaders do not build City in Coastal lands this turn.",
+    "3": "Something"
+  },
+  {
+    "id": 2,
+    "name": "Dahan Enheartened",
+    "1": "Each player may Push 1 Dahan from a land with Invaders or Gather 1 Dahan into a land with Invaders.",
+    "2": "Each player chooses a different land. In chosen lands: Gather up to 2 Dahan, then 1 Damage if Dahan are present.",
+    "3": "Each player chooses a different land. In chosen lands: Gather up to 2 Dahan, then 1 Damage per Dahan present."
+  },
+  {
+    "id": 3,
+    "name": "Test",
+    "1": "Level 1.",
+    "2": "Level 2.",
+    "3": "Level 3."
+  }
+]

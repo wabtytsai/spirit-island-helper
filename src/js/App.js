@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import logo from '../resource/logo.svg';
-import '../css/App.css';
 
+import '../css/App.css';
 import FearPool from './FearPool.jsx';
+import FearDeck from './fear/FearDeck.jsx';
 
 class App extends Component {
   render() {
@@ -13,6 +13,7 @@ class App extends Component {
         </header>
 
         <FearPool players={3} />
+        <FearDeck />
       </div>
     );
   }
