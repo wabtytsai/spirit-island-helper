@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import FearCard from './FearCard';
+
 export default class FearDeck extends Component {
   renderFearDeck() {
     if (this.props.fearDeck.length <= 0) {
@@ -22,7 +24,7 @@ export default class FearDeck extends Component {
 
   render() {
     return (
-      <div>
+      <div className="fear-deck-container">
         <div className="terror-level">
           <div className="fear-header">
             Terror Level {this.props.terrorLevel}
@@ -36,7 +38,12 @@ export default class FearDeck extends Component {
             Earned Fears:
           </div>
           {this.props.earnedFears.map((card) =>
-            <div key={card.id}>{card.name}</div>
+            <FearCard
+              key={card.id}
+              card={card}
+              handleReveal={this.props.handleReveal}
+              handleUse={this.props.handleUse}
+            />
           )}
         </div>
 
@@ -45,7 +52,7 @@ export default class FearDeck extends Component {
             Discarded Fears:
           </div>
           {this.props.discardedFears.map((card) =>
-            <span key={card.id}>{card.name}</span>
+            <div key={card.id}> {card.name} </div>
           )}
         </div>
       </div>

@@ -23,11 +23,24 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .fear-header {
   font-size: large;
   font-weight: bold;
+}
+
+.fear-deck-container {
+  border-style: groove;
+  margin: 15px 0;
+}
+
+.fear-pool-container {
+  margin: 15px 0;
 }
