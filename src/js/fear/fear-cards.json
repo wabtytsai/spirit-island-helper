@@ -1,90 +1,127 @@
 [
   {
-    "id": 1,
-    "name": "Overseas Trade Seems Safer",
-    "1": "Defend 3 in all Coastal lands.",
+    "1": "Each Town destroys 1 Explorer in its land.",
+    "3":
+      "Destroy all Explorer in lands with Town / City. Each City destroys 1 Town in its land.",
     "2":
-      "Defend 6 in all Coastal lands. Invaders do not build City in Coastal lands this turn.",
-    "3": "Something"
+      "Each Town destroys 1 Explorer in its land. Each City destroys 2 Explorer in its land.",
+    "name": "Scapegoats",
+    "id": "2098b09c57096eb2"
   },
   {
-    "id": 2,
-    "name": "Dahan Enheartened",
+    "1": "In each land, Defend 1 per Dahan.",
+    "3": "In each land, Defend 2 per Dahan.",
+    "2":
+      "In each land with Dahan, Defend 1, plus an additional Defend 1 per Dahan.",
+    "name": "Dahan on their Guard",
+    "id": "8a78142e946c011e"
+  },
+  {
+    "1": "Defend 2 in all lands with Presence.",
+    "3":
+      "Each player chooses a differend land and removes up to 2 Health worth of Invaders per Presence there.",
+    "2":
+      "Defend 2 in all lands with Presence. Each Spirit gains 1 Energy per SacredSite they have in lands with Invaders.",
+    "name": "Belief Takes Root",
+    "id": "3cf76601e22fcb50"
+  },
+  {
+    "1":
+      "Each player removes 1 Explorer / Town from a land where it is the only Invader.",
+    "3": "Each player removes an Invader from a land with 2 or fewer Invaders.",
+    "2":
+      "Each player removes 1 Explorer / Town from a land with 2 or fewer Invaders.",
+    "name": "Isolation",
+    "id": "45c4fc064e525974"
+  },
+  {
+    "1": "Each player removes 1 Explorer from a land with Dahan.",
+    "3":
+      "Remove 2 Explorer or 1 Town from each land with Dahan. Then, remove 1 City from each land with at least 2 Dahan.",
+    "2": "Each player removes 2 Explorer or 1 Town from a land with Dahan.",
+    "name": "Tall Tales of Savagery",
+    "id": "1273805276afb7ec"
+  },
+  {
+    "1": "Invaders do not Build in lands with City.",
+    "3":
+      "Each player may replace 1 City with 1 Town or 1 Town with 1 Explorer in a Coastal land.",
+    "2": "Each player may replace 1 Town with 1 Explorer in a Coastal land.",
+    "name": "Trade Suffers",
+    "id": "eeba684238be612f"
+  },
+  {
+    "1": "Each player chooses a differend land with Dahan. 1 Damage there.",
+    "3":
+      "Each player chooses a differend land with Dahan. 2 Damage per Dahan there.",
+    "2":
+      "Each player chooses a differend land with Dahan. 1 Damage per Dahan there.",
+    "name": "Dahan Raid",
+    "id": "2b67d70c71465d5b"
+  },
+  {
+    "1": "Invaders do not Explore into lands with at least 2 Dahan.",
+    "3": "Invaders do not Build in lands with Dahan.",
+    "2": "Invaders do not Build in lands where Dahan outnumber Town / City.",
+    "name": "Avoid the Dahan",
+    "id": "0b2f9b54201b0aa6"
+  },
+  {
+    "1": "Each player removes 1 Explorer / Town from a land with SacredSite.",
+    "3":
+      "Each player removes 1 Explorer / Town from a land with Presence, or 1 City from a land with SacredSite.",
+    "2": "Each player removes 1 Explorer / Town from a land with Presence.",
+    "name": "Fear of the Unseen",
+    "id": "0838646bab862ecd"
+  },
+  {
+    "1": "Each player may Push up to 2 Explorer from an Inland land.",
+    "3": "Each player may Push any number of Explorer / Town from one land.",
+    "2": "Each player may Push up to 3 Explorer / Town from an Inland land.",
+    "name": "Retreat!",
+    "id": "6d76826aa060674d"
+  },
+  {
+    "1": "Defend 3 in all Coastal lands.",
+    "3":
+      "Defend 9 in all Coastal lands. Invaders do not Build in Coastal lands this turn.",
+    "2":
+      "Defend 6 in all Coastal lands. Invaders do not Build City in Coastal lands this turn.",
+    "name": "Overseas Trade Seems Safer",
+    "id": "abbbda8f7a3e01ff"
+  },
+  {
+    "1": "Each player removes 1 Explorer from a Coastal land.",
+    "3": "Each player removes 1 Explorer / Town from any land.",
+    "2": "Each player removes 1 Explorer / Town from a Coastal land.",
+    "name": "Emigration Accelerates",
+    "id": "381a162d7d3e15a8"
+  },
+  {
+    "1": "Each player removes 1 Explorer from an Inland land.",
+    "3": "Each player removes 1 Explorer / Town from any land.",
+    "2": "Each player removes 1 Explorer / Town from an Inland land.",
+    "name": "Wary of the Interior",
+    "id": "f7d00b41a43b36ec"
+  },
+  {
     "1":
       "Each player may Push 1 Dahan from a land with Invaders or Gather 1 Dahan into a land with Invaders.",
-    "2":
-      "Each player chooses a different land. In chosen lands: Gather up to 2 Dahan, then 1 Damage if Dahan are present.",
     "3":
-      "Each player chooses a different land. In chosen lands: Gather up to 2 Dahan, then 1 Damage per Dahan present."
+      "Each player chooses a differend land. In chosen lands: Gather up to 2 Dahan, then 1 Damage per Dahan present.",
+    "2":
+      "Eac hplayer chooses a differend land. In chosen lands: Gather up to 2 Dahan, then 1 Damage if Dahan are present.",
+    "name": "Dahan Enheartened",
+    "id": "ac58d689c844d447"
   },
   {
-    "id": 3,
-    "name": "Test",
-    "1": "Level 1.",
-    "2": "Level 2.",
-    "3": "Level 3."
-  },
-  {
-    "id": 4,
-    "name": "Test 4",
-    "1": "Level 1.",
-    "2": "Level 2.",
-    "3": "Level 3."
-  },
-  {
-    "id": 5,
-    "name": "Test 5",
-    "1": "Level 1.",
-    "2": "Level 2.",
-    "3": "Level 3."
-  },
-  {
-    "id": 6,
-    "name": "Test 6",
-    "1": "Level 1.",
-    "2": "Level 2.",
-    "3": "Level 3."
-  },
-  {
-    "id": 7,
-    "name": "Test 7",
-    "1": "Level 1.",
-    "2": "Level 2.",
-    "3": "Level 3."
-  },
-  {
-    "id": 8,
-    "name": "Test 8",
-    "1": "Level 1.",
-    "2": "Level 2.",
-    "3": "Level 3."
-  },
-  {
-    "id": 9,
-    "name": "Test 9",
-    "1": "Level 1.",
-    "2": "Level 2.",
-    "3": "Level 3."
-  },
-  {
-    "id": 10,
-    "name": "Test 10",
-    "1": "Level 1.",
-    "2": "Level 2.",
-    "3": "Level 3."
-  },
-  {
-    "id": 11,
-    "name": "Test 11",
-    "1": "Level 1.",
-    "2": "Level 2.",
-    "3": "Level 3."
-  },
-  {
-    "id": 12,
-    "name": "Test 12",
-    "1": "Level 1.",
-    "2": "Level 2.",
-    "3": "Level 3."
+    "1":
+      "Each player may Push 1 Explorer into a land with more Town / City than the land it came from.",
+    "3":
+      "Each player may remove up to 3 Health worth of Invaders from a land without Town.",
+    "2":
+      "Each player may Gather 1 Explorer into a land with Town / City, or Gather 1 Town into a land with City.",
+    "name": "Seek Safety",
+    "id": "83c8922ab09d8c45"
   }
 ]
