@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 
 import '../css/App.css';
-import FearPool from './FearPool.jsx';
-import FearDeck from './fear/FearDeck.jsx';
+import FearContainer from './fear/FearContainer';
 
 class App extends Component {
   render() {
@@ -12,8 +11,7 @@ class App extends Component {
           <h1 className="App-title">Spirit Island Helper</h1>
         </header>
 
-        <FearPool players={3} />
-        <FearDeck />
+        <FearContainer players={1} fearSetup={[3, 3, 3]}/>
       </div>
     );
   }
