@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 export default class FearPool extends Component {
   render() {
@@ -9,11 +9,9 @@ export default class FearPool extends Component {
         </div>
 
         <div className="generate-fear">
-          <button onClick={this.props.handleClick}>
-            Click me
-          </button>
+          <button onClick={this.props.handleClick}>Click me</button>
         </div>
       </div>
     );
   }
-};
+}

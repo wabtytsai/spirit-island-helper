@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import _ from 'lodash';
+import React, { Component } from "react";
+import _ from "lodash";
 
-import FearDeck from './FearDeck';
-import FearPool from './FearPool';
-import fearCards from './fear-cards.json';
+import FearDeck from "./FearDeck";
+import FearPool from "./FearPool";
+import fearCards from "./fear-cards.json";
 
 export default class FearContainer extends Component {
   constructor(props) {
@@ -46,7 +46,8 @@ export default class FearContainer extends Component {
   }
 
   getTerrorLevel() {
-    const earnedTotal = this.state.earnedFears.length + this.state.discardedFears.length;
+    const earnedTotal =
+      this.state.earnedFears.length + this.state.discardedFears.length;
     const level1 = 0;
     const level2 = this.props.fearSetup[0];
     const level3 = this.props.fearSetup[1] + level2;
@@ -77,4 +78,4 @@ export default class FearContainer extends Component {
       </div>
     );
   }
-};
+}
