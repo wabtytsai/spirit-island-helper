@@ -1,29 +1,54 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
 
-import fearCards from './fear-cards.json';
+export default class FearDeck extends Component {
+  renderFearDeck() {
+    if (this.props.fearDeck.length <= 0) {
+      return (
+        <div className="fear-deck">
+          Victory!
+        </div>
+      );
+    }
 
-class FearPool extends Component {
-  constructor(props) {
-    super(props);
-
-    var temp = fearCards;
-    this.fearCards = _.shuffle(fearCards);
-    debugger;
+    return (
+      <div className="fear-deck">
+        <span className="fear-header">
+          Fear Deck:
+        </span>
+        {this.props.fearDeck.length} cards remaining.
+      </div>
+    );
   }
 
   render() {
     return (
       <div>
-        Fear Deck:
-        <ul>
-          {this.fearCards.map((card) =>
-            <li key={card.id}>{card.name}</li>
+        <div className="terror-level">
+          <div className="fear-header">
+            Terror Level {this.props.terrorLevel}
+          </div>
+        </div>
+
+        {this.renderFearDeck()}
+
+        <div className="earned-fears">
+          <div className="fear-header">
+            Earned Fears:
+          </div>
+          {this.props.earnedFears.map((card) =>
+            <div key={card.id}>{card.name}</div>
           )}
-        </ul>
+        </div>
+
+        <div className="discarded-fears">
+          <div className="fear-header">
+            Discarded Fears:
+          </div>
+          {this.props.discardedFears.map((card) =>
+            <span key={card.id}>{card.name}</span>
+          )}
+        </div>
       </div>
     );
   }
-}
-
-export default FearPool;
+};
