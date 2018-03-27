@@ -23,6 +23,7 @@ export default class FearDeck extends Component {
   }
 
   render() {
+    const images = require.context("../../img/fear", false, /\.jpg$/);
     return (
       <div className="fear-deck-container">
         <div className="terror-level">
@@ -43,6 +44,7 @@ export default class FearDeck extends Component {
               card={card}
               handleReveal={this.props.handleReveal}
               handleUse={this.props.handleUse}
+              images={images}
             />
           )}
         </div>

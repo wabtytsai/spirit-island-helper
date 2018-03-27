@@ -1,30 +1,48 @@
 import React, { Component } from "react";
+import {toFilename} from '../utils';
+import cover from '../../img/fear-back.jpg';
+
+const WIDTH = 300;
+const HEIGHT = 420;
 
 export default class FearDeck extends Component {
   constructor(props) {
     super(props);
 
-    this.handleReveal = this.handleReveal.bind(this);
-    this.handleUse = this.handleUse.bind(this);
+    this.handleReveal = this.props.handleReveal.bind(this, this.props.card.id);
+    this.handleUse = this.props.handleUse.bind(this, this.props.card.id);
   }
 
-  handleReveal() {
-    this.props.handleReveal(this.props.card.id);
-  }
+  renderCard(card) {
+    if (card.revealed) {
+      const filename = "./" + toFilename(card.name, "jpg");
+      return (
+        <img
+          src={this.props.images(filename)}
+          alt={card.name}
+          width={WIDTH}
+          height={HEIGHT}
+          onClick={this.handleUse}
+        />
+      );
+    }
 
-  handleUse() {
-    this.props.handleUse(this.props.card.id);
+    return (
+      <img
+        src={cover}
+        alt="Fear Card"
+        width={WIDTH}
+        height={HEIGHT}
+        onClick={this.handleReveal}
+      />
+    );
   }
 
   render() {
     let card = this.props.card;
     return (
       <div className="fear-card">
-        {card.revealed ? card.name : "Fear Card"}
-        <button onClick={this.handleReveal} hidden={card.revealed === true}>
-          Reveal
-        </button>
-        <button onClick={this.handleUse}>Use</button>
+        {this.renderCard(card)}
       </div>
     );
   }
