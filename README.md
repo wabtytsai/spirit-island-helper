@@ -10,7 +10,10 @@ Make sure you have [node and npm](https://www.npmjs.com/get-npm). If not, instal
 
 For the first time, you should build the project
 
-`npm run build`
+```
+npm install
+npm run build
+```
 
 Then run it with
 
