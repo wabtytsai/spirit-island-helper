@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import FearCard from './FearCard';
+import DiscardedCard from './DiscardedCard';
 
 export default class FearDeck extends Component {
   renderFearDeck() {
@@ -54,7 +55,11 @@ export default class FearDeck extends Component {
             Discarded Fears:
           </div>
           {this.props.discardedFears.map((card) =>
-            <div key={card.id}> {card.name} </div>
+            <DiscardedCard
+              key={card.id}
+              card={card}
+              images={images}
+            />
           )}
         </div>
       </div>

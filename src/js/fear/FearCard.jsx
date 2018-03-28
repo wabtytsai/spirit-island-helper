@@ -15,7 +15,7 @@ export default class FearDeck extends Component {
 
   renderCard(card) {
     if (card.revealed) {
-      const filename = "./" + toFilename(card.name, "jpg");
+      const filename = toFilename(card.name, "jpg");
       return (
         <img
           src={this.props.images(filename)}
