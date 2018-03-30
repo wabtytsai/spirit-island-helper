@@ -5,34 +5,28 @@ export default class BlightContainer extends Component {
     super(props);
     this.totalBlight = this.props.players * 2;
 
-    this.state = { value: 10 };
+    this.state = { numBlight: this.totalBlight };
 
-    this.handleClickP = this.handleClickP.bind(this);
-    this.handleClickM = this.handleClickM.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
-  handleClickP(e) {
-    const newBlight = this.state.value++;
-    this.setState({ newBlight });
-  }
-  handleClickM(e) {
-    const newBlight = this.state.value--;
-    this.setState({ newBlight });
-  }
+    this.handleAddBlight = this.handleAddBlight.bind(this);
+    this.handleRemoveBlight = this.handleRemoveBlight.bind(this);
 
-  handleChange(e) {
-    this.setState({ value: Math.max(e.target.value, 0) });
+  }
+  handleAddBlight(e) {
+    this.setState({ numBlight: this.state.numBlight + 1 });
+  }
+  handleRemoveBlight(e) {
+    this.setState({ numBlight: this.state.numBlight - 1 });
   }
   render() {
     return (
       <div className="blight-container">
-        Blights Counter {"\n"}
-        {this.state.value} Blights left.
+        <p> Blights Counter </p>
+        <p> {this.state.numBlight} Blights left </p>
         <div className="change-blight">
-          <button onClick={this.handleClickP}>
+          <button onClick={this.handleAddBlight}>
             Add Blight
           </button>
-          <button onClick={this.handleClickM}>
+          <button onClick={this.handleRemoveBlight}>
             Remove Blight
           </button>
         </div>
