@@ -13,7 +13,7 @@ class App extends Component {
         </header>
 
         <FearContainer players={1} fearSetup={[3, 3, 3]}/>
-        <BlightContainer />
+        <BlightContainer players={1}/>
       </div>
     );
   }
