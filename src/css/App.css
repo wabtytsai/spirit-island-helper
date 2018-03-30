@@ -31,6 +31,10 @@
   }
 }
 
+.player-count-selected {
+  background-color: #d5f4e6;
+}
+
 .fear-header {
   font-size: large;
   font-weight: bold;
