@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import "../css/App.css";
+import InvaderContainer from "./invader/InvaderContainer";
 import FearContainer from "./fear/FearContainer";
 import BlightContainer from "./blight/BlightContainer";
 import { classSet } from "./utils";
@@ -13,6 +14,7 @@ class App extends Component {
       players: 1,
       start: false,
       fearSetup: [3, 3, 3],
+      invaderSetup: [1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3],
     };
 
     this.startGame = this.startGame.bind(this);
@@ -30,6 +32,7 @@ class App extends Component {
     if (this.state.start) {
       return (
         <div className="spirit-island-body">
+          <InvaderContainer setup={this.state.invaderSetup}/>
           <FearContainer
             players={this.state.players}
             fearSetup={this.state.fearSetup}

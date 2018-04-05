@@ -48,3 +48,13 @@
 .fear-pool-container {
   margin: 15px 0;
 }
+
+.invader-container {
+  border-style: groove;
+  margin: 15px 0;
+}
+
+.invader-header {
+  font-size: large;
+  font-weight: bold;
+}
