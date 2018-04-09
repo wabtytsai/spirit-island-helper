@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import _ from "lodash";
+import {toFilename} from '../utils';
 
 import invaderCards from "./invader-decks.json";
+
+const WIDTH = 100;
+const HEIGHT = 150;
 
 export default class InvaderContainer extends Component {
   constructor(props) {
@@ -19,6 +23,7 @@ export default class InvaderContainer extends Component {
     }
 
     this.state = { round: 0 };
+    this.images = require.context("../../img/invader", false, /\.png/);
   }
 
   handleClick() {
@@ -27,30 +32,47 @@ export default class InvaderContainer extends Component {
 
   getInvaderCard(round) {
     if (round < 0) {
-      return "None";
+      return (<div className="invader-card">None</div>);
     }
 
-    return this.deck[round];
+    const filename = toFilename(this.deck[round], "png");
+    return (
+        <img
+          className="invader-card"
+          src={this.images(filename)}
+          alt={this.deck[round]}
+          width={WIDTH}
+          height={HEIGHT}
+        />
+    )
   }
 
   render() {
+    if (this.state.round >= this.deck.length) {
+      return (
+        <div>Game Over</div>
+      );
+    }
+
     return (
       <div className="invader-container">
         <span>
           <div className="invader-header">Ravage</div>
-          <div>{this.getInvaderCard(this.state.round - 2)}</div>
+          {this.getInvaderCard(this.state.round - 2)}
         </span>
         <span>
           <div className="invader-header">Build</div>
-          <div>{this.getInvaderCard(this.state.round - 1)}</div>
+          {this.getInvaderCard(this.state.round - 1)}
         </span>
         <span>
           <div className="invader-header">Explore</div>
-          <div>{this.getInvaderCard(this.state.round)}</div>
+          {this.getInvaderCard(this.state.round)}
         </span>
         <span>
           <div className="invader-header">Invader Deck</div>
-          <div>{this.deck.length - this.state.round - 1}</div>
+          <div className="invader-card">
+            {this.deck.length - this.state.round - 1}
+          </div>
         </span>
         <span>
           <button onClick={this.handleClick.bind(this)}>Advance</button>
