@@ -52,9 +52,17 @@
 .invader-container {
   border-style: groove;
   margin: 15px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .invader-header {
   font-size: large;
   font-weight: bold;
+}
+
+.invader-card {
+  height: 150px;
+  width: 100px;
 }
