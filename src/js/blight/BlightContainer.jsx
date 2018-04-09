@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import _ from "lodash";
+
+import blightCards from "./blight-cards.json";
 
 export default class BlightContainer extends Component {
   constructor(props) {
@@ -7,43 +10,31 @@ export default class BlightContainer extends Component {
 
     this.state = { 
       numBlight: this.totalBlight,
-      blightCardName: "No Effects",
-      blightCardEffect: "",
-      endGameTrigger: 0
+      blightCard: {},
+      endGameTrigger: false
     };
 
     this.handleAddBlight = this.handleAddBlight.bind(this);
     this.handleRemoveBlight = this.handleRemoveBlight.bind(this);
-    this.renderBlightCard = this.renderBlightCard.bind(this);
 
-  }
-  renderBlightCard(blights) {
-    if (blights <= 1 && !this.state.endGameTrigger) {
-      var rngBlight = Math.round(Math.random());
-      if(rngBlight){
-        this.setState({ blightCardName: "Downward Spiral" });
-        this.setState({ blightCardEffect: "At the start of each invader phase, each spirit loses one presence." });
-        this.setState({ numBlight: 5 * this.props.players }); 
-      }
-      else{
-        this.setState({ blightCardName: "Memory Fades" });
-        this.setState({ blightCardEffect: "At the start of each invader phase, each spirit forgets one power or loses one presence." });
-        this.setState({ numBlight: 4 * this.props.players });
-      }
-      this.setState({ endGameTrigger: 1 });
-    }
-    if (blights <=1 && this.state.endGameTrigger) {
-      this.setState({ blightCardName: "GAME OVER" });
-      this.setState({ blightCardEffect: "" });
-    }
   }
 
   handleAddBlight(e) {
     this.setState({ numBlight: this.state.numBlight + 1 });
   }
   handleRemoveBlight(e) {
-    this.setState({ numBlight: this.state.numBlight - 1 });
-    this.renderBlightCard(this.state.numBlight);
+    const newBlight = this.state.numBlight - 1;
+    this.setState({ numBlight: newBlight});
+    if(newBlight === 0 && this.state.endGameTrigger){
+      this.setState({ blightCard: { "desc": "", "name": "GAME OVER", "newblights": 0 } });
+      this.setState({ numBlight: 0 });
+    }
+    else if(newBlight === 0 ){
+      this.setState({ endGameTrigger: true });
+      let card = _.shuffle(blightCards)[0];
+      this.setState({ blightCard: card });
+      this.setState({ numBlight: card.newBlights*this.props.players });
+    }
   }
   
   render() {
@@ -61,8 +52,8 @@ export default class BlightContainer extends Component {
         </div>
         <div className="effect-name">
           <p></p>
-          <p>{this.state.blightCardName}</p>
-          <p>{this.state.blightCardEffect}</p>
+          <p>{this.state.blightCard.name}</p>
+          <p>{this.state.blightCard.desc}</p>
         </div>
       </div>
     );
