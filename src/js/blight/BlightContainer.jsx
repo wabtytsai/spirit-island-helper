@@ -25,7 +25,7 @@ export default class BlightContainer extends Component {
   handleRemoveBlight(e) {
     const newBlight = this.state.numBlight - 1;
     this.setState({ numBlight: newBlight});
-    if(newBlight === 0 && this.state.endGameTrigger){
+    if(newBlight <= 0 && this.state.endGameTrigger){
       this.setState({ blightCard: { "desc": "", "name": "GAME OVER", "newblights": 0 } });
       this.setState({ numBlight: 0 });
     }
