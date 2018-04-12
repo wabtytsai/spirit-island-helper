@@ -8,11 +8,7 @@ export default class BlightContainer extends Component {
     super(props);
 
     this.state = { 
-<<<<<<< HEAD
       numBlight: this.props.players * 2,
-=======
-      numBlight: this.totalBlight,
->>>>>>> 37a9d7e92de388ee5e3726b2fb08f09d5be7c8ca
       blightCard: {},
       endGameTrigger: false
     };
