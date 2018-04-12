@@ -6,10 +6,9 @@ import blightCards from "./blight-cards.json";
 export default class BlightContainer extends Component {
   constructor(props) {
     super(props);
-    this.totalBlight = this.props.players * 2;
 
     this.state = { 
-      numBlight: this.totalBlight,
+      numBlight: this.props.players * 2,
       blightCard: {},
       endGameTrigger: false
     };
