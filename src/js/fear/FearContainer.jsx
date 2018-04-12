@@ -2,25 +2,26 @@ import React, { Component } from "react";
 import _ from "lodash";
 
 import FearDeck from "./FearDeck";
-import FearPool from "./FearPool";
 import fearCards from "./fear-cards.json";
 
 export default class FearContainer extends Component {
   constructor(props) {
     super(props);
 
-    this.totalFears = this.props.players * 4;
-
     this.state = {
-      fears: this.totalFears,
       fearDeck: this.generateFearDeck(fearCards),
-      earnedFears: [],
+      activeFears: [],
       discardedFears: [],
     };
 
-    this.handleFearGeneration = this.handleFearGeneration.bind(this);
     this.revealFear = this.revealFear.bind(this);
     this.useFear = this.useFear.bind(this);
+  }
+
+  componentDidUpdate() {
+    if (this.props.earnedFearCards > 0) {
+      this.earnFearCards();
+    }
   }
 
   generateFearDeck(fearCards) {
@@ -30,7 +31,7 @@ export default class FearContainer extends Component {
     );
 
     let deck = _.shuffle(fearCards).slice(0, totalCards);
-    for (var card of deck) {
+    for (let card of deck) {
       card["revealed"] = false;
     }
 
@@ -39,7 +40,7 @@ export default class FearContainer extends Component {
 
   getTerrorLevel() {
     const earnedTotal =
-      this.state.earnedFears.length + this.state.discardedFears.length;
+      this.state.activeFears.length + this.state.discardedFears.length;
     const level2 = this.props.fearSetup[0];
     const level3 = this.props.fearSetup[1] + level2;
 
@@ -52,46 +53,42 @@ export default class FearContainer extends Component {
     }
   }
 
-  handleFearGeneration(value) {
-    this.setState(function(prevState, props) {
-      let fears = prevState.fears - value;
-      let fearDeck = prevState.fearDeck;
-      let earnedFears = prevState.earnedFears;
+  earnFearCards() {
+    let fearDeck = this.state.fearDeck;
+    let activeFears = this.state.activeFears;
+    let count = this.props.earnedFearCards;
 
-      while (fears <= 0 && fearDeck.length > 0) {
-        fears += this.totalFears;
-        earnedFears.push(fearDeck.pop());
-      }
+    while (count > 0 && fearDeck.length > 0) {
+      count -= 1;
+      activeFears.push(fearDeck.pop());
+    }
 
-      if (fearDeck.length === 0) {
-        fears = 0;
-      }
-
-      return {
-        fears,
-        fearDeck,
-        earnedFears,
-      };
+    this.setState({
+      fearDeck,
+      activeFears,
     });
+    this.props.resetEarnedFearCards();
+
+    this.props.updateTerrorLevel(this.getTerrorLevel());
   }
 
   revealFear(cardId) {
-    let earnedFears = this.state.earnedFears;
-    for (let card of earnedFears) {
+    let activeFears = this.state.activeFears;
+    for (let card of activeFears) {
       if (card.id === cardId) {
         card.revealed = true;
       }
     }
 
-    this.setState({ earnedFears });
+    this.setState({ activeFears });
   }
 
   useFear(cardId) {
-    let earnedFears = this.state.earnedFears;
+    let activeFears = this.state.activeFears;
     let discardedFears = this.state.discardedFears;
     let selected = null;
 
-    earnedFears.forEach((card, index) => {
+    activeFears.forEach((card, index) => {
       if (card.id === cardId) {
         selected = index;
       }
@@ -101,12 +98,12 @@ export default class FearContainer extends Component {
       return;
     }
 
-    let card = earnedFears[selected];
-    earnedFears.splice(selected, 1);
+    let card = activeFears[selected];
+    activeFears.splice(selected, 1);
     discardedFears.push(card);
 
     this.setState({
-      earnedFears,
+      activeFears,
       discardedFears,
     });
   }
@@ -114,17 +111,10 @@ export default class FearContainer extends Component {
   render() {
     return (
       <div className="fear-container">
-        <FearPool
-          handleClick={this.handleFearGeneration}
-          fears={this.state.fears}
-          hidden={this.state.fearDeck.length === 0}
-        />
-
         <FearDeck
           fearDeck={this.state.fearDeck}
-          earnedFears={this.state.earnedFears}
+          activeFears={this.state.activeFears}
           discardedFears={this.state.discardedFears}
-          terrorLevel={this.getTerrorLevel()}
           handleReveal={this.revealFear}
           handleUse={this.useFear}
         />

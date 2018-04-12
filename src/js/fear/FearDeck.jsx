@@ -4,42 +4,23 @@ import FearCard from './FearCard';
 import DiscardedCard from './DiscardedCard';
 
 export default class FearDeck extends Component {
-  renderFearDeck() {
-    if (this.props.fearDeck.length <= 0) {
-      return (
-        <div className="fear-deck">
-          Victory!
-        </div>
-      );
-    }
-
-    return (
-      <div className="fear-deck">
-        <span className="fear-header">
-          Fear Deck:
-        </span>
-        {this.props.fearDeck.length} cards remaining.
-      </div>
-    );
-  }
-
   render() {
     const images = require.context("../../img/fear", false, /\.jpg$/);
+
     return (
       <div className="fear-deck-container">
-        <div className="terror-level">
-          <div className="fear-header">
-            Terror Level {this.props.terrorLevel}
-          </div>
+        <div className="fear-deck">
+          <span className="fear-header">
+            Fear Deck:
+          </span>
+          {this.props.fearDeck.length} cards remaining.
         </div>
-
-        {this.renderFearDeck()}
 
         <div className="earned-fears">
           <div className="fear-header">
-            Earned Fears:
+            Active Fears:
           </div>
-          {this.props.earnedFears.map((card) =>
+          {this.props.activeFears.map((card) =>
             <FearCard
               key={card.id}
               card={card}

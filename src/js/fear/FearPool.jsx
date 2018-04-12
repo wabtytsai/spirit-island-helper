@@ -4,27 +4,46 @@ export default class FearPool extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { value: 1 };
+    this.totalFears = this.props.players * 4;
 
-    this.handleClick = this.handleClick.bind(this);
+    this.state = {
+      value: 1,
+      fears: this.totalFears,
+    };
+
     this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleClick(e) {
-    const value = this.state.value;
-    this.setState({ value: 1 });
-    this.props.handleClick(value);
+    this.generateFear = this.generateFear.bind(this);
   }
 
   handleChange(e) {
-    this.setState({ value: Math.max(e.target.value, 1) });
+    this.setState({ value: Math.max(e.target.value, 0) });
+  }
+
+  generateFear() {
+    const value = this.state.value;
+    let fears = this.state.fears - value;
+    let count = 0;
+
+    while (fears <= 0) {
+      fears += this.totalFears;
+      count += 1;
+    }
+
+    if (count > 0) {
+      this.props.earnFearCards(count);
+    }
+
+    this.setState({
+      value: 1,
+      fears,
+    });
   }
 
   render() {
     return (
       <div className="fear-pool-container">
         <div className="fear-pool">
-          {this.props.fears} fear tokens until next fear card.
+          {this.state.fears} fear tokens until next fear card.
         </div>
 
         <div className="generate-fear">
@@ -32,9 +51,8 @@ export default class FearPool extends Component {
             type="number"
             value={this.state.value}
             onChange={this.handleChange}
-            hidden={this.props.hidden}
           />
-          <button onClick={this.handleClick} hidden={this.props.hidden}>
+          <button onClick={this.generateFear}>
             Generate Fear
           </button>
         </div>
