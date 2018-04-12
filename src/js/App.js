@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import "../css/App.css";
 import InvaderContainer from "./invader/InvaderContainer";
 import FearContainer from "./fear/FearContainer";
+import FearPool from "./fear/FearPool";
+import TerrorLevel from "./fear/TerrorLevel";
 import BlightContainer from "./blight/BlightContainer";
 import { classSet } from "./utils";
 
@@ -15,9 +17,9 @@ class App extends Component {
       start: false,
       fearSetup: [3, 3, 3],
       invaderSetup: [1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3],
+      earnedFearCards: 0,
+      terrorLevel: 1,
     };
-
-    this.startGame = this.startGame.bind(this);
   }
 
   startGame() {
@@ -28,16 +30,35 @@ class App extends Component {
     this.setState({ players });
   }
 
+  earnFearCards(count) {
+    this.setState({ earnedFearCards: count });
+  }
+
+  resetEarnedFearCards() {
+    this.setState({ earnedFearCards: 0 });
+  }
+
+  updateTerrorLevel(terrorLevel) {
+    if (terrorLevel !== this.state.getTerrorLevel) {
+      this.setState({ terrorLevel });
+    }
+  }
+
   renderBody() {
     if (this.state.start) {
-      return (
-        <div className="spirit-island-body">
-          <InvaderContainer setup={this.state.invaderSetup}/>
+      return(
+        <div className="main-container">
           <FearContainer
-            players={this.state.players}
             fearSetup={this.state.fearSetup}
-          />
+            earnedFearCards={this.state.earnedFearCards}
+            resetEarnedFearCards={this.resetEarnedFearCards.bind(this)}
+            updateTerrorLevel={this.updateTerrorLevel.bind(this)} />
+          <FearPool
+            players={this.state.players}
+            earnFearCards={this.earnFearCards.bind(this)} />
+          <TerrorLevel terrorLevel={this.state.terrorLevel} />
           <BlightContainer players={this.state.players} />
+          <InvaderContainer setup={this.state.invaderSetup}/>
         </div>
       );
     }
@@ -57,7 +78,7 @@ class App extends Component {
             {player} Player{player > 1 ? "s" : ""}
           </div>
         ))}
-        <button onClick={this.startGame}> Start </button>
+        <button onClick={this.startGame.bind(this)}> Start </button>
       </div>
     );
   }
