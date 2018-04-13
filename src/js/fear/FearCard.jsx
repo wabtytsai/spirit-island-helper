@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {toFilename} from '../utils';
-import cover from '../../img/fear-back.jpg';
+import cover from '../../img/fear-back.png';
 
 const WIDTH = 300;
 const HEIGHT = 420;
