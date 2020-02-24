@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+/* @flow */
+import React, { useState } from "react";
 
 import "../css/App.css";
 import InvaderContainer from "./invader/InvaderContainer";
@@ -8,57 +9,29 @@ import TerrorLevel from "./fear/TerrorLevel";
 import BlightContainer from "./blight/BlightContainer";
 import { classSet } from "./utils";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
+function App() {
+  const [players, setPlayers] = useState(1);
+  const [start, setStart] = useState(false);
+  const [fearSetup, _setFearSetup] = useState([3, 3, 3]);
+  const [invaderSetup, _setInvaderSetup] = useState([1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3]);
+  const [earnedFearCards, setEarnedFearCards] = useState(0);
+  const [terrorLevel, setTerrorLevel] = useState(1);
 
-    this.state = {
-      players: 1,
-      start: false,
-      fearSetup: [3, 3, 3],
-      invaderSetup: [1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3],
-      earnedFearCards: 0,
-      terrorLevel: 1,
-    };
-  }
-
-  startGame() {
-    this.setState({ start: true });
-  }
-
-  selectPlayers(players) {
-    this.setState({ players });
-  }
-
-  earnFearCards(count) {
-    this.setState({ earnedFearCards: count });
-  }
-
-  resetEarnedFearCards() {
-    this.setState({ earnedFearCards: 0 });
-  }
-
-  updateTerrorLevel(terrorLevel) {
-    if (terrorLevel !== this.state.getTerrorLevel) {
-      this.setState({ terrorLevel });
-    }
-  }
-
-  renderBody() {
-    if (this.state.start) {
+  const renderBody = () => {
+    if (start) {
       return(
         <div className="main-container">
           <FearContainer
-            fearSetup={this.state.fearSetup}
-            earnedFearCards={this.state.earnedFearCards}
-            resetEarnedFearCards={this.resetEarnedFearCards.bind(this)}
-            updateTerrorLevel={this.updateTerrorLevel.bind(this)} />
+            fearSetup={fearSetup}
+            earnedFearCards={earnedFearCards}
+            resetEarnedFearCards={() => setEarnedFearCards(0)}
+            updateTerrorLevel={level => setTerrorLevel(level)} />
           <FearPool
-            players={this.state.players}
-            earnFearCards={this.earnFearCards.bind(this)} />
-          <TerrorLevel terrorLevel={this.state.terrorLevel} />
-          <BlightContainer players={this.state.players} />
-          <InvaderContainer setup={this.state.invaderSetup}/>
+            players={players}
+            earnFearCards={count => {setEarnedFearCards(count)}} />
+          <TerrorLevel terrorLevel={terrorLevel} />
+          <BlightContainer players={players} />
+          <InvaderContainer setup={invaderSetup} />
         </div>
       );
     }
@@ -71,29 +44,27 @@ class App extends Component {
             key={player}
             className={classSet({
               "player-count": true,
-              "player-count-selected": this.state.players === player,
+              "player-count-selected": players === player,
             })}
-            onClick={this.selectPlayers.bind(this, player)}
+            onClick={player => {setPlayers(player)}}
           >
             {player} Player{player > 1 ? "s" : ""}
           </div>
         ))}
-        <button onClick={this.startGame.bind(this)}> Start </button>
+        <button onClick={() => {setStart(true)}}> Start </button>
       </div>
     );
   }
 
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Spirit Island Helper</h1>
-        </header>
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h1 className="App-title">Spirit Island Helper</h1>
+      </header>
 
-        {this.renderBody()}
-      </div>
-    );
-  }
+      {renderBody()}
+    </div>
+  );
 }
 
 export default App;

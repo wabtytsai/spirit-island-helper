@@ -3,21 +3,42 @@
   "version": "0.2.0",
   "private": true,
   "dependencies": {
-    "lodash": "^4.17.13",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.1"
+    "acorn": "^7.1.0",
+    "eslint-plugin-flowtype": "^4.6.0",
+    "lodash": "^4.17.15",
+    "react": "next",
+    "react-dom": "next",
+    "react-scripts": "^3.4.0",
+    "typescript": "^3.8.2"
   },
   "scripts": {
-    "build": "babel src/ -d lib/",
-    "prepublish": "npm run build",
-    "flow": "flow"
+    "babel": "babel src/ -d lib/",
+    "flow": "flow",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
     "@babel/preset-flow": "^7.8.3",
+    "@babel/preset-react": "^7.8.3",
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.18.3",
     "flow-bin": "^0.118.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
