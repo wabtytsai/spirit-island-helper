@@ -12,6 +12,7 @@ module.exports = {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
+    "parser": "babel-eslint",
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -23,6 +24,9 @@ module.exports = {
         "react"
     ],
     "rules": {
-        "no-unused-vars": ["warn", {"vars": "all", "args": "after-used", "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }]
+        "no-unused-vars": ["warn", {"vars": "all", "args": "after-used", "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }],
+        "react/no-this-in-sfc": "warn",
+        "react/jsx-uses-react": "error",
+        "react/jsx-uses-vars": "error"
     }
 };
