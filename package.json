@@ -6,7 +6,10 @@
     "acorn": "^7.1.0",
     "core-js": "^3.6.4",
     "eslint-plugin-flowtype": "^3.13.0",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.7",
     "lodash": "^4.17.15",
+    "prettier": "^1.19.1",
     "react": "next",
     "react-dom": "next",
     "react-scripts": "^3.4.0",
@@ -41,6 +44,16 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write"
     ]
   }
 }
