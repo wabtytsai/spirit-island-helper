@@ -1,4 +1,6 @@
-import React, { Component } from "react";
+/* @flow */
+
+import React, { useState, useEffect } from "react";
 import _ from "lodash";
 import { toFilename } from "../utils";
 
@@ -7,75 +9,77 @@ import invaderCards from "./invader-decks.json";
 const WIDTH = 100;
 const HEIGHT = 150;
 
-export default class InvaderContainer extends Component {
-  constructor(props) {
-    super(props);
+type Props = {|
+  setup: Array<number>
+|};
 
+export default function InvaderContainer(props: Props) {
+  const [round, setRound] = useState(0);
+  const [deck, setDeck] = useState([]);
+  const images = require.context("../../img/invader", false, /\.png/);
+
+  useEffect(() => {
     let shuffledInvaderCards = {
       "1": _.shuffle(invaderCards["1"]),
       "2": _.shuffle(invaderCards["2"]),
       "3": _.shuffle(invaderCards["3"])
     };
 
-    this.deck = [];
+    let deck = [];
     for (let stage of props.setup) {
-      this.deck.push(shuffledInvaderCards[stage].pop());
+      deck.push(shuffledInvaderCards[stage].pop());
     }
+    setDeck(deck);
+  }, [props.setup, setDeck]);
 
-    this.state = { round: 0 };
-    this.images = require.context("../../img/invader", false, /\.png/);
-  }
-
-  handleClick() {
-    this.setState({ round: this.state.round + 1 });
-  }
-
-  getInvaderCard(round) {
+  const getInvaderCard = round => {
     if (round < 0) {
       return <div className="invader-card">None</div>;
     }
 
-    const filename = toFilename(this.deck[round], "png");
+    const filename = toFilename(deck[round], "png");
     return (
       <img
         className="invader-card"
-        src={this.images(filename)}
-        alt={this.deck[round]}
+        src={images(filename)}
+        alt={deck[round]}
         width={WIDTH}
         height={HEIGHT}
       />
     );
+  };
+
+  if (round >= deck.length) {
+    return <div>Game Over</div>;
   }
 
-  render() {
-    if (this.state.round >= this.deck.length) {
-      return <div>Game Over</div>;
-    }
-
-    return (
-      <div className="invader-container">
-        <span>
-          <div className="invader-header">Ravage</div>
-          {this.getInvaderCard(this.state.round - 2)}
-        </span>
-        <span>
-          <div className="invader-header">Build</div>
-          {this.getInvaderCard(this.state.round - 1)}
-        </span>
-        <span>
-          <div className="invader-header">Explore</div>
-          {this.getInvaderCard(this.state.round)}
-        </span>
-        <span>
-          <div className="invader-header">Invader Deck</div>
-          <div className="invader-card">
-            {this.deck.length - this.state.round - 1}
-          </div>
-        </span>
-        <span>
-          <button onClick={this.handleClick.bind(this)}>Advance</button>
-        </span>
-      </div>
-    );
-  }
+  return (
+    <div className="invader-container">
+      <span>
+        <div className="invader-header">Ravage</div>
+        {getInvaderCard(round - 2)}
+      </span>
+      <span>
+        <div className="invader-header">Build</div>
+        {getInvaderCard(round - 1)}
+      </span>
+      <span>
+        <div className="invader-header">Explore</div>
+        {getInvaderCard(round)}
+      </span>
+      <span>
+        <div className="invader-header">Invader Deck</div>
+        <div className="invader-card">{deck.length - round - 1}</div>
+      </span>
+      <span>
+        <button
+          onClick={() => {
+            setRound(round + 1);
+          }}
+        >
+          Advance
+        </button>
+      </span>
+    </div>
+  );
 }
