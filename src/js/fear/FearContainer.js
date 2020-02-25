@@ -11,7 +11,7 @@ export default class FearContainer extends Component {
     this.state = {
       fearDeck: this.generateFearDeck(fearCards),
       activeFears: [],
-      discardedFears: [],
+      discardedFears: []
     };
 
     this.revealFear = this.revealFear.bind(this);
@@ -65,7 +65,7 @@ export default class FearContainer extends Component {
 
     this.setState({
       fearDeck,
-      activeFears,
+      activeFears
     });
     this.props.resetEarnedFearCards();
 
@@ -104,7 +104,7 @@ export default class FearContainer extends Component {
 
     this.setState({
       activeFears,
-      discardedFears,
+      discardedFears
     });
   }
 

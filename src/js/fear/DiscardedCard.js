@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {toFilename} from '../utils';
+import { toFilename } from "../utils";
 
 const WIDTH = 300;
 const HEIGHT = 420;
@@ -9,7 +9,7 @@ export default class DiscardedCard extends Component {
     super(props);
 
     this.state = {
-      hover: false,
+      hover: false
     };
 
     this.showToolTip = this.showToolTip.bind(this);
@@ -17,11 +17,11 @@ export default class DiscardedCard extends Component {
   }
 
   showToolTip() {
-    this.setState({hover: true});
+    this.setState({ hover: true });
   }
 
   hideToolTip() {
-    this.setState({hover: false});
+    this.setState({ hover: false });
   }
 
   renderImage(card) {
@@ -40,10 +40,7 @@ export default class DiscardedCard extends Component {
     let card = this.props.card;
     return (
       <div className="discarded-card">
-        <p
-          onMouseEnter={this.showToolTip}
-          onMouseLeave={this.hideToolTip}
-        >
+        <p onMouseEnter={this.showToolTip} onMouseLeave={this.hideToolTip}>
           {card.name}
         </p>
         {this.state.hover && this.renderImage(card)}

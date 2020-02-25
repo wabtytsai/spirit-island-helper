@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import _ from "lodash";
-import {toFilename} from '../utils';
+import { toFilename } from "../utils";
 
 import invaderCards from "./invader-decks.json";
 
@@ -14,7 +14,7 @@ export default class InvaderContainer extends Component {
     let shuffledInvaderCards = {
       "1": _.shuffle(invaderCards["1"]),
       "2": _.shuffle(invaderCards["2"]),
-      "3": _.shuffle(invaderCards["3"]),
+      "3": _.shuffle(invaderCards["3"])
     };
 
     this.deck = [];
@@ -32,26 +32,24 @@ export default class InvaderContainer extends Component {
 
   getInvaderCard(round) {
     if (round < 0) {
-      return (<div className="invader-card">None</div>);
+      return <div className="invader-card">None</div>;
     }
 
     const filename = toFilename(this.deck[round], "png");
     return (
-        <img
-          className="invader-card"
-          src={this.images(filename)}
-          alt={this.deck[round]}
-          width={WIDTH}
-          height={HEIGHT}
-        />
-    )
+      <img
+        className="invader-card"
+        src={this.images(filename)}
+        alt={this.deck[round]}
+        width={WIDTH}
+        height={HEIGHT}
+      />
+    );
   }
 
   render() {
     if (this.state.round >= this.deck.length) {
-      return (
-        <div>Game Over</div>
-      );
+      return <div>Game Over</div>;
     }
 
     return (

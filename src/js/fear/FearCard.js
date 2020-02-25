@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import {toFilename} from '../utils';
-import cover from '../../img/fear-back.png';
+import { toFilename } from "../utils";
+import cover from "../../img/fear-back.png";
 
 const WIDTH = 300;
 const HEIGHT = 420;
@@ -40,10 +40,6 @@ export default class FearDeck extends Component {
 
   render() {
     let card = this.props.card;
-    return (
-      <div className="fear-card">
-        {this.renderCard(card)}
-      </div>
-    );
+    return <div className="fear-card">{this.renderCard(card)}</div>;
   }
 }
