@@ -1,0 +1,12 @@
+[
+  {
+    "desc": "At the start of each invader phase, each spirit loses one presence.",
+    "name": "Downward Spiral",
+    "newBlights": 5
+  },
+  {
+    "desc": "At the start of each invader phase, each spirit forgets one power or loses one presence.",
+    "name": "Memory Fades",
+    "newBlights": 4
+  }
+]
